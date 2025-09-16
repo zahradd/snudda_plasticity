@@ -1,1 +1,0 @@
-../mechanisms_rxd/DASyn.mod
