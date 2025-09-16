@@ -146,3 +146,45 @@ example/notebooks/*/networks
 # Slurm files
 *.err
 *.out
+
+# existing entries … (keep everything you already had)
+
+# Extra ignores for HPC / local-only data
+examples/
+validation/
+
+# Local results that should never be tracked
+snudda_results/
+results/
+
+# IDE / editor junk
+.idea/
+.vscode/
+# Ignore NEURON modfile build outputs
+*.c
+*.o
+*.so
+*.ipynb
+x86_64/
+aarch64/
+arm64/
+# Virtual environments
+.venv/
+venv/
+venvs/
+descriptive/
+more/
+snuddaenv/
+examples/
+# Ignore local virtual envs
+snuddaenv/
+env/
+.venv/
+venv/
+
+# Ignore everything in examples
+examples/
+
+# Ignore all notebooks anywhere
+*.ipynb
+
