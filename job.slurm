@@ -20,6 +20,7 @@ source ~/venvs/snudda-plasticity/bin/activate
 # Project directory
 cd /cfs/klemming/home/z/zahrakh/snudda_plasticity
 export DATA="$PWD"
+export SNUDDA_DATA=/cfs/klemming/home/z/zahrakh/snudda_plasticity/snudda/data
 
 # Safety tweaks
 unset DISPLAY
