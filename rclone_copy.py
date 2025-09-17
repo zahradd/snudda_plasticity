@@ -13,9 +13,9 @@ def rclone_copy(src, dst):
         command = ['rclone', 'copy', src, dst, '--progress']
         result = subprocess.run(command, capture_output=True, text=True)
         if result.returncode == 0:
-            print(f"✅ Successfully copied {src} -> {dst}")
+            print(f" Successfully copied {src} -> {dst}")
         else:
-            print(f"❌ Failed to copy {src}")
+            print(f"Failed to copy {src}")
             print(result.stderr)
     except Exception as e:
         print("An error occurred:", e)
