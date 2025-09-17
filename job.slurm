@@ -13,10 +13,9 @@
 # --- Environment setup ---
 module load snic-env
 module load cray-python
-source "$HOME/Snudda/snudda_plasticity/bin/activate"
-
+source "$HOME/snudda_plasticity/snudda_env/bin/activate"
 # Optional: for your Python script's neurons_dir
-export DATA="$HOME/Snudda"
+export DATA="$HOME/snudda_plasticity"
 
 unset DISPLAY
 ulimit -s unlimited
