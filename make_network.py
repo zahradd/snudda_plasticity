@@ -4,11 +4,19 @@ from snudda import SnuddaInit
 network_path = os.path.join("networks", "simple_example")
 os.makedirs(network_path, exist_ok=True)
 
-snudda_data = os.path.join("..", "..", "snudda", "data")
+# --- Snudda data directory ---
+snudda_data = os.environ.get(
+    "SNUDDA_DATA",
+    os.path.join("..", "..", "snudda", "data")  # fallback if not set
+)
+
+# --- Neurons directory ---
+neurons_dir = os.path.expandvars("$DATA/neurons")
+if "$" in neurons_dir or neurons_dir == "/neurons":
+    neurons_dir = os.path.join(snudda_data, "neurons")
 
 si = SnuddaInit(network_path=network_path, random_seed=12345, snudda_data=snudda_data)
 
-neurons_dir = os.path.expandvars("$DATA/neurons")
 if "$" in neurons_dir or neurons_dir == "/neurons":
     neurons_dir = os.path.join("..", "..", "snudda", "data", "neurons")
 
