@@ -13,13 +13,18 @@
 # --- Environment setup ---
 module load snic-env
 module load cray-python
-source "$HOME/snudda_plasticity/snudda_env/bin/activate"
-# Optional: for your Python script's neurons_dir
-export DATA="$HOME/snudda_plasticity"
 
+# Activate virtual environment
+source ~/venvs/snudda-plasticity/bin/activate
+
+# Project directory
+cd /cfs/klemming/home/z/zahrakh/snudda_plasticity
+export DATA="$PWD"
+
+# Safety tweaks
 unset DISPLAY
 ulimit -s unlimited
 mkdir -p log
 
-# --- Run Python directly ---
+# --- Run Python job ---
 python make_network.py
