@@ -1,6 +1,9 @@
 import os
 import subprocess
 
+# === SET THIS TO YOUR RCLONE CONFIG PASSWORD ===
+RCLONE_PASSWORD = "BAGHnav12!@12"
+
 # Paths to your generated network and log directory
 network_path = '/cfs/klemming/home/z/zahrakh/snudda_plasticity/networks/simple_example'
 log_path = '/cfs/klemming/home/z/zahrakh/snudda_plasticity/log'
@@ -10,10 +13,12 @@ onedrive_destination = 'kth_onedrive:Dokument/GitHub/data-plot/data/gabaPlastici
 
 def rclone_copy(src, dst):
     try:
-        command = ['rclone', 'copy', src, dst, '--progress']
+        command = ['rclone', 'copy', src, dst, '--progress', '--create-empty-src-dirs']
         print(f"Running: {' '.join(command)}")
-        # Show rclone’s own output directly in the terminal
-        result = subprocess.run(command)
+        # Inject the RCLONE_CONFIG_PASS environment variable
+        env = os.environ.copy()
+        env["RCLONE_CONFIG_PASS"] = RCLONE_PASSWORD
+        result = subprocess.run(command, env=env)
         if result.returncode == 0:
             print(f"Successfully copied {src} -> {dst}")
         else:
