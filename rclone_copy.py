@@ -4,12 +4,15 @@ import subprocess
 # === SET THIS TO YOUR RCLONE CONFIG PASSWORD ===
 RCLONE_PASSWORD = "BAGHnav12!@12"
 
-# Paths to your generated network and log directory
-network_path = '/cfs/klemming/home/z/zahrakh/snudda_plasticity/networks/simple_example'
-log_path = '/cfs/klemming/home/z/zahrakh/snudda_plasticity/log'
+# Ask the user which network name to use
+network_name = input("Enter the network name: ").strip()
 
-# Destination on OneDrive (top-level)
-onedrive_destination = 'kth_onedrive:Dokument/GitHub/data-plot/data/gabaPlasticity.data/simple_example'
+# Build paths based on the chosen name
+network_path = f'/cfs/klemming/home/z/zahrakh/snudda_plasticity/networks/{network_name}'
+log_path = f'/cfs/klemming/home/z/zahrakh/snudda_plasticity/log'
+
+# Destination on OneDrive
+onedrive_destination = f'kth_onedrive:Dokument/GitHub/snudda_plasticity/networks/{network_name}'
 
 def rclone_copy(src, dst):
     try:
