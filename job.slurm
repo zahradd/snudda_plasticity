@@ -17,8 +17,8 @@ module load cray-python
 # Activate virtual environment
 source ~/venvs/snudda-plasticity/bin/activate
 
-# Project directory
-cd /cfs/klemming/home/z/zahrakh/snudda_plasticity
+# Project directory (go into experiments folder where make_network.py lives)
+cd /cfs/klemming/home/z/zahrakh/snudda_plasticity/experiments
 export DATA="$PWD"
 export SNUDDA_DATA=/cfs/klemming/home/z/zahrakh/snudda_plasticity/snudda/data
 

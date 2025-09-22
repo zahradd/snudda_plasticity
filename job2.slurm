@@ -6,7 +6,7 @@
 #SBATCH --ntasks=1
 #SBATCH --cpus-per-task=1
 #SBATCH --mem=2G
-#SBATCH -A naiss2025-5-328   
+#SBATCH -A naiss2025-5-328
 #SBATCH -o log/%x-%j.out
 #SBATCH -e log/%x-%j.err
 
@@ -17,8 +17,8 @@ module load cray-python
 # Activate virtual environment
 source ~/venvs/snudda-plasticity/bin/activate
 
-# Project directory
-cd /cfs/klemming/home/z/zahrakh/snudda_plasticity
+# Project directory (go into experiments folder where make_network.py lives)
+cd /cfs/klemming/home/z/zahrakh/snudda_plasticity/experiments
 export DATA="$PWD"
 export SNUDDA_DATA=/cfs/klemming/home/z/zahrakh/snudda_plasticity/snudda/data
 
