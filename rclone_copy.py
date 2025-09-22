@@ -85,16 +85,21 @@ onedrive_base = 'kth_onedrive:Dokument/GitHub/snudda_plasticity'
 onedrive_network_dest = f'{onedrive_base}/networks/{network_name}' if network_name else None
 onedrive_log_dest = f'{onedrive_network_dest}/log' if network_name else None
 
-# Step 4: Copy network
+# Step 4: Copy network (optional)
 if network_name:
     if os.path.exists(network_path):
-        print("\nCopying selected network...")
-        if rclone_copy(network_path, onedrive_network_dest):
-            remove = input(f"Do you want to remove the local network '{network_name}'? (y/n): ")
-            if remove.lower() == 'y':
-                remove_path(network_path)
+        copy_network = input(f"Do you want to also copy the network '{network_name}'? (y/n): ")
+        if copy_network.lower() == 'y':
+            print("\nCopying selected network...")
+            if rclone_copy(network_path, onedrive_network_dest):
+                remove_network = input(f"Do you want to remove the local network '{network_name}' after copy? (y/n): ")
+                if remove_network.lower() == 'y':
+                    remove_path(network_path)
+        else:
+            print(f"⏭️ Skipped copying network '{network_name}', but will still use its folder for logs")
     else:
         print(f"⚠️ Network not found: {network_path}")
+
 
 # Step 5: Copy logs
 if log_files:
