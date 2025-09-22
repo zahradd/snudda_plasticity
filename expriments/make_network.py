@@ -1,5 +1,6 @@
 import os
 from snudda import SnuddaInit, Snudda
+import json
 
 # --- Anchor paths to this file's location (…/experiments) ---
 try:
@@ -42,9 +43,30 @@ si.define_striatum(
 si.write_json()
 print(f"Network config written to {network_path}")
 
+# --- Patch network-config.json: replace $SNUDDA_DATA with absolute path ---
+config_file = os.path.join(network_path, "network-config.json")
+with open(config_file, "r") as f:
+    cfg = json.load(f)
+
+def replace_env(obj):
+    if isinstance(obj, str) and "$SNUDDA_DATA" in obj:
+        return obj.replace("$SNUDDA_DATA", snudda_data)
+    if isinstance(obj, dict):
+        return {k: replace_env(v) for k, v in obj.items()}
+    if isinstance(obj, list):
+        return [replace_env(v) for v in obj]
+    return obj
+
+cfg = replace_env(cfg)
+
+with open(config_file, "w") as f:
+    json.dump(cfg, f, indent=4)
+
+print("Patched config to use absolute paths.")
+
 # --- Step 2: Build the full network on Dardel (positions/synapses/pruned) ---
 snd = Snudda(network_path=network_path)
 snd.create_network()
 
 print("Network created successfully!")
-print("Copy these to your laptop for analysis: position.h5, synapses.h5, pruned.h5 (plus network-config.json).")
+print("Copy these to your laptop for analysis: position.h5, synapses.h5, pruned.h5, network-synapses.hdf5, plus network-config.json.")
