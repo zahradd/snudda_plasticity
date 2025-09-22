@@ -99,16 +99,24 @@ if network_name:
 # Step 5: Copy logs
 if log_files:
     if onedrive_log_dest:
+        print(f"\nCopying log files for job '{log_name}'...")
+        success = True
         for log_file in log_files:
             if os.path.exists(log_file):
-                print(f"\nCopying log file {log_file}...")
-                if rclone_copy(log_file, onedrive_log_dest):
-                    remove = input(f"Do you want to remove the local log file '{log_file}'? (y/n): ")
-                    if remove.lower() == 'y':
-                        remove_path(log_file)
+                if not rclone_copy(log_file, onedrive_log_dest):
+                    success = False
             else:
                 print(f"⚠️ Log file not found: {log_file}")
+                success = False
+
+        # Ask once for the pair
+        if success:
+            remove = input(f"Do you want to remove local log files for '{log_name}' (.out & .err)? (y/n): ")
+            if remove.lower() == 'y':
+                for log_file in log_files:
+                    remove_path(log_file)
     else:
         print("⚠️ Cannot copy logs without selecting a network destination")
+
 
 print("\n=== Script finished ===")
