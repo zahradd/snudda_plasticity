@@ -1,4 +1,5 @@
 import os
+import shutil
 import subprocess
 
 # === SET THIS TO YOUR RCLONE CONFIG PASSWORD ===
@@ -18,10 +19,27 @@ def rclone_copy(src, dst):
         result = subprocess.run(command, env=env)
         if result.returncode == 0:
             print(f"✅ Successfully copied {src} -> {dst}")
+            return True
         else:
             print(f"❌ Failed to copy {src} (return code {result.returncode})")
+            return False
     except Exception as e:
         print("⚠️ An error occurred:", e)
+        return False
+
+# === Helper to remove files or directories ===
+def remove_path(path):
+    try:
+        if os.path.isfile(path):
+            os.remove(path)
+            print(f"🗑️ Removed file: {path}")
+        elif os.path.isdir(path):
+            shutil.rmtree(path)
+            print(f"🗑️ Removed directory: {path}")
+        else:
+            print(f"⚠️ Path not found: {path}")
+    except Exception as e:
+        print(f"⚠️ Failed to remove {path}: {e}")
 
 
 print("=== Script started ===")
@@ -71,7 +89,10 @@ onedrive_log_dest = f'{onedrive_network_dest}/log' if network_name else None
 if network_name:
     if os.path.exists(network_path):
         print("\nCopying selected network...")
-        rclone_copy(network_path, onedrive_network_dest)
+        if rclone_copy(network_path, onedrive_network_dest):
+            remove = input(f"Do you want to remove the local network '{network_name}'? (y/n): ")
+            if remove.lower() == 'y':
+                remove_path(network_path)
     else:
         print(f"⚠️ Network not found: {network_path}")
 
@@ -81,7 +102,10 @@ if log_files:
         for log_file in log_files:
             if os.path.exists(log_file):
                 print(f"\nCopying log file {log_file}...")
-                rclone_copy(log_file, onedrive_log_dest)
+                if rclone_copy(log_file, onedrive_log_dest):
+                    remove = input(f"Do you want to remove the local log file '{log_file}'? (y/n): ")
+                    if remove.lower() == 'y':
+                        remove_path(log_file)
             else:
                 print(f"⚠️ Log file not found: {log_file}")
     else:
