@@ -28,4 +28,4 @@ ulimit -s unlimited
 mkdir -p log
 
 # --- Run Python job ---
-python make_network.py
+python build_striatum_network.py
