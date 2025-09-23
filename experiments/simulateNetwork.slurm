@@ -27,5 +27,26 @@ unset DISPLAY
 ulimit -s unlimited
 export SNUDDA_NUMPROC=$SLURM_CPUS_PER_TASK
 
+# -------------------------
+# Compile NEURON mechanisms
+# -------------------------
+echo "Compiling NEURON mod files..."
+cd /cfs/klemming/home/z/zahrakh/snudda_plasticity/snudda/data/neurons/mechanisms
+
+rm -rf x86_64
+
+export CXX=CC
+export CC=cc
+export FC=ftn
+export MPICC=cc
+export MPICXX=CC
+
+which nrnivmodl
+srun -n 1 nrnivmodl .
+
+cd /cfs/klemming/home/z/zahrakh/snudda_plasticity/experiments
+echo "Compilation complete."
+# -------------------------
+
 # --- Run Python job ---
 python simulate_striatum_network.py
