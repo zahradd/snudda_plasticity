@@ -1,4 +1,4 @@
-#!/usr/bin/env python3
+
 """
 Build a striatum example network with Snudda.
 
@@ -17,17 +17,22 @@ from snudda import SnuddaInit, SnuddaPlace, SnuddaDetect, SnuddaPrune
 # -------------------
 number_of_neurons = 200   # adjust size as needed
 random_seed = 123
-network_path = os.path.join("networks", "striatum_example")
 
 # -------------------
-# Snudda data: use env var if set, else fall back
+# Paths
 # -------------------
+HERE = os.path.dirname(os.path.abspath(__file__))
+PROJECT_ROOT = os.path.normpath(os.path.join(HERE, ".."))  # one level up
+network_path = os.path.join(PROJECT_ROOT, "striatum_example")
+
+# Snudda data: use env var if set, else fallback
 snudda_data = os.environ.get(
     "SNUDDA_DATA",
-    os.path.join(os.getcwd(), "snudda", "data")
+    os.path.join(PROJECT_ROOT, "snudda", "data")
 )
 
 print(f"Using snudda_data = {snudda_data}")
+print(f"Network will be saved at {network_path}")
 
 # -------------------
 # 1. Initialize network
@@ -64,4 +69,3 @@ sp = SnuddaPrune(network_path=network_path, rc=None)
 sp.prune()
 
 print("Network build complete. Files saved in:", network_path)
-
