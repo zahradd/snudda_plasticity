@@ -28,4 +28,4 @@ ulimit -s unlimited
 export SNUDDA_NUMPROC=$SLURM_CPUS_PER_TASK
 
 # --- Run Python job ---
-python make_network.py
+python simulate_striatum_network.py
