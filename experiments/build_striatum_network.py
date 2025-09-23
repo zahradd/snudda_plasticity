@@ -23,7 +23,7 @@ random_seed = 123
 # -------------------
 HERE = os.path.dirname(os.path.abspath(__file__))
 PROJECT_ROOT = os.path.normpath(os.path.join(HERE, ".."))  # one level up
-network_path = os.path.join(PROJECT_ROOT, "striatum_example")
+network_path = os.path.join(PROJECT_ROOT, "networks" ,"striatum_example")
 
 # Snudda data: use env var if set, else fallback
 snudda_data = os.environ.get(

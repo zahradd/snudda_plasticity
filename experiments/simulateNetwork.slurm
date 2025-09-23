@@ -7,9 +7,8 @@
 #SBATCH --cpus-per-task=1
 #SBATCH --mem=2G
 #SBATCH -A naiss2025-5-309
-#SBATCH -o log/%x-%j.out
-#SBATCH -e log/%x-%j.err
-
+#SBATCH -o /cfs/klemming/home/z/zahrakh/snudda_plasticity/log/%x-%j.out
+#SBATCH -e /cfs/klemming/home/z/zahrakh/snudda_plasticity/log/%x-%j.err
 # --- Environment setup ---
 module load snic-env
 module load cray-python
