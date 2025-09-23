@@ -24,7 +24,6 @@ export SNUDDA_DATA=/cfs/klemming/home/z/zahrakh/snudda_plasticity/snudda/data
 # Safety tweaks
 unset DISPLAY
 ulimit -s unlimited
-mkdir -p log
 export SNUDDA_NUMPROC=$SLURM_CPUS_PER_TASK
 
 # --- Run Python job ---
