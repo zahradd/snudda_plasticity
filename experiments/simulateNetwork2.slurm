@@ -3,9 +3,9 @@
 #SBATCH --partition=main
 #SBATCH --time=00:10:00
 #SBATCH --nodes=1
-#SBATCH --ntasks=1
+#SBATCH --ntasks=6
 #SBATCH --cpus-per-task=1
-#SBATCH --mem=2G
+#SBATCH --mem=32G
 #SBATCH -A naiss2025-5-328
 #SBATCH -o /cfs/klemming/home/z/zahrakh/snudda_plasticity/log/%x-%j.out
 #SBATCH -e /cfs/klemming/home/z/zahrakh/snudda_plasticity/log/%x-%j.err
