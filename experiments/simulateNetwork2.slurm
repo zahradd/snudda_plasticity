@@ -12,6 +12,7 @@
 # --- Environment setup ---
 module load snic-env
 module load cray-python
+module load cray-mpich
 
 # Activate virtual environment
 source ~/venvs/snudda-plasticity/bin/activate
