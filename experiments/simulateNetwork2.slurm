@@ -21,7 +21,7 @@ source ~/venvs/snudda-plasticity/bin/activate
 cd /cfs/klemming/home/z/zahrakh/snudda_plasticity/experiments
 
 export DATA="$PWD"
-export SNUDDA_DATA=/cfs/klemming/home/z/zahrakh/snudda_plasticity/snudda/data
+export SNUDDA_DATA=/cfs/klemming/home/z/zahrakh/BasalGangliaData/data
 
 # Safety tweaks
 unset DISPLAY
