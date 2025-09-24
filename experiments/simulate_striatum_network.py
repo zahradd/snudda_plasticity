@@ -22,7 +22,7 @@ from snudda.input import SnuddaInput
 # -------------------
 # Parameters
 # -------------------
-duration = 3.5         # seconds of biological time
+duration = 0.5         # seconds of biological time
 n_cores = 6            # MPI ranks to use
 exp_name = "striatum_example"
 

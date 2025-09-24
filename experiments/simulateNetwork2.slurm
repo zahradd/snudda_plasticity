@@ -1,7 +1,7 @@
 #!/bin/bash -l
 #SBATCH --job-name=snudda_init
 #SBATCH --partition=main
-#SBATCH --time=00:10:00
+#SBATCH --time=02:00:00
 #SBATCH --nodes=1
 #SBATCH --ntasks=6
 #SBATCH --cpus-per-task=1
