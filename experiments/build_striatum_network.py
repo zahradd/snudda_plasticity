@@ -1,12 +1,6 @@
-
 """
-Build a striatum example network with Snudda.
-
-Steps:
-1. Initialize network definition
-2. Place neurons
-3. Detect candidate synapses
-4. Prune connections
+Build a striatum network with Snudda, using BasalGangliaData
+but keeping a fixed number of neurons (struct_def).
 """
 
 import os
@@ -15,21 +9,21 @@ from snudda import SnuddaInit, SnuddaPlace, SnuddaDetect, SnuddaPrune
 # -------------------
 # Parameters
 # -------------------
-number_of_neurons = 200   # adjust size as needed
+number_of_neurons = 200   # <--- choose any number you want
 random_seed = 123
 
 # -------------------
 # Paths
 # -------------------
 HERE = os.path.dirname(os.path.abspath(__file__))
-PROJECT_ROOT = os.path.normpath(os.path.join(HERE, ".."))  # one level up
-network_path = os.path.join(PROJECT_ROOT, "networks" ,"striatum_example")
+PROJECT_ROOT = os.path.normpath(os.path.join(HERE, ".."))      # snudda_plasticity/
+network_path = os.path.join(PROJECT_ROOT, "networks", "striatum_example")
 
-# Snudda data: use env var if set, else fallback
-snudda_data = os.environ.get(
-    "SNUDDA_DATA",
-    os.path.join(PROJECT_ROOT, "snudda", "data")
-)
+# Point to BasalGangliaData repo (default two dirs up from snudda_plasticity)
+bg_data_path = os.path.normpath(os.path.join(PROJECT_ROOT, "..", "BasalGangliaData", "data"))
+
+# Use environment variable if defined, else fallback to bg_data_path
+snudda_data = os.environ.get("SNUDDA_DATA", bg_data_path)
 
 print(f"Using snudda_data = {snudda_data}")
 print(f"Network will be saved at {network_path}")
