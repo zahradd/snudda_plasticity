@@ -1,28 +1,10 @@
 {
     "dSPN": {
-        "Ctx": {
-            "generator": "poisson",
-            "frequency": 1,
-            "conductance": 0.5e-9,
-            "nInputs": 20,
-            "modFile": "tmGlut"
-        }
-    },
-    "iSPN": {
-        "Ctx": {
-            "generator": "poisson",
-            "frequency": 1,
-            "conductance": 0.5e-9,
-            "nInputs": 20,
-            "modFile": "tmGlut"
-        }
-    },
-    "FS": {
-        "Ctx": {
-            "generator": "poisson",
-            "frequency": 5,
-            "conductance": 1.0e-9,
-            "nInputs": 10,
+        "Ctx" : {
+            "generator" : "poisson",
+            "frequency" : 1,
+            "conductance" : 0.5e-9,
+            "nInputs" : 20,
             "modFile": "tmGlut"
         }
     }
