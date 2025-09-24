@@ -88,7 +88,7 @@ except Exception as e:
 print(f"Running simulation for {duration} seconds on {n_cores} cores...")
 
 cmd = [
-    "mpiexec",
+    "srun",
     "-n", str(n_cores),
     "snudda",
     "simulate",
