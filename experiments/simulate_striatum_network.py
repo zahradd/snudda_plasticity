@@ -39,15 +39,48 @@ print(f"Input config   : {input_config_file}")
 # -------------------
 # 1. Generate input
 # -------------------
+# print("Generating input spikes...")
+# si = SnuddaInput(
+#     network_path=network_path,
+#     input_config_file=input_config_file,
+#     verbose=False,
+#     rc=None
+# )
+# si.generate()
+# print("Input spikes written to input-spikes.hdf5")
+# -------------------
+# 1. Generate input
+# -------------------
 print("Generating input spikes...")
-si = SnuddaInput(
-    network_path=network_path,
-    input_config_file=input_config_file,
-    verbose=False,
-    rc=None
-)
-si.generate()
-print("Input spikes written to input-spikes.hdf5")
+
+# --- Debug: read and print your JSON before passing it to Snudda
+import json
+with open(input_config_file, "r") as f:
+    config_data = json.load(f)
+
+print("Input config content (parsed):")
+for cell_type, inputs in config_data.items():
+    for input_name, details in inputs.items():
+        print(f"  {cell_type} -> {input_name}:")
+        for k, v in details.items():
+            print(f"    {k} : {v} (type={type(v)})")
+
+# --- Now call SnuddaInput, but catch errors
+from snudda.input import SnuddaInput
+try:
+    si = SnuddaInput(
+        network_path=network_path,
+        input_config_file=input_config_file,
+        verbose=False,
+        rc=None
+    )
+    si.generate()
+    print("Input spikes written to input-spikes.hdf5")
+except Exception as e:
+    import traceback
+    print("\n[ERROR] SnuddaInput.generate() failed")
+    traceback.print_exc()
+    sys.exit(1)
 
 # -------------------
 # 2. Run the simulation
