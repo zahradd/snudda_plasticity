@@ -76,8 +76,7 @@ cmd = [
     "snudda",
     "simulate",
     network_path,
-    "--time", str(duration),
-    "--nthread", str(n_threads)
+    "--time", str(duration)
 ]
 
 ret = subprocess.call(cmd)

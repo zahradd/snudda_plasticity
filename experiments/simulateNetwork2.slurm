@@ -26,7 +26,7 @@ export SNUDDA_DATA=/cfs/klemming/home/z/zahrakh/BasalGangliaData/data
 # Safety tweaks
 unset DISPLAY
 ulimit -s unlimited
-export SNUDDA_NUMPROC=$SLURM_CPUS_PER_TASK
+export OMP_NUM_THREADS=$SLURM_CPUS_PER_TASK
 
 # -------------------------
 # Compile NEURON mechanisms
