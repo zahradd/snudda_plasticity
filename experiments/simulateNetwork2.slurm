@@ -50,4 +50,4 @@ echo "Compilation complete."
 # -------------------------
 
 # --- Run Python job ---
-python simulate_striatum_network.py
+python simulate_network.py

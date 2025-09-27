@@ -19,13 +19,13 @@ from snudda.input import SnuddaInput
 duration = 0.5          # seconds of biological time
 n_ranks = int(os.environ.get("SLURM_NTASKS", "6"))          # MPI ranks from SLURM
 n_threads = int(os.environ.get("SLURM_CPUS_PER_TASK", "1")) # threads per rank
-exp_name = "striatum_example"   # keep the same
+network_name = "first"   # keep the same
 
 # -------------------
 # Paths
 # -------------------
 PROJECT_ROOT = os.path.normpath(os.path.join(os.getcwd(), ".."))
-network_path = os.path.join(PROJECT_ROOT, "networks", exp_name)
+network_path = os.path.join(PROJECT_ROOT, "networks", network_name)
 
 input_config_file = os.path.join(PROJECT_ROOT, "input_config", "striatum-test-input.json")
 
