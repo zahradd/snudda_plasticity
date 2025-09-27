@@ -44,9 +44,22 @@ si.define_striatum(
     num_FS=0,
     num_LTS=0,
     num_ChIN=0,
+    volume_type="cube",
+    neurons_dir=os.path.join(snudda_data, "neurons")
+)
+
+
+si = SnuddaInit(struct_def={}, network_path=network_path, random_seed=random_seed)
+
+si.define_striatum(
+    num_dSPN=200,
+    num_iSPN=200,
+    num_FS=0,
+    num_LTS=0,
+    num_ChIN=0,
     neuron_density=80500,
     volume_type="cube",
-    neurons_dir=os.path.join(snudda_data, "neurons", "striatum")
+    neurons_dir="$SNUDDA_DATA/neurons"
 )
 
 si.write_json()
